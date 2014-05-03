@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e09a8e58-b861-4911-aff1-ea59d8abca2c" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/requirements.txt" afterPath="$PROJECT_DIR$/requirements.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/divided_kingdom/settings.py" afterPath="$PROJECT_DIR$/divided_kingdom/settings.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="divided_kingdom.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,8 +32,41 @@
       <file leaf-file-name="settings.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/divided_kingdom/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="4" selection-start="1035" selection-end="1035" vertical-scroll-proportion="0.5527638" vertical-offset="270" max-vertical-offset="1365">
+            <state line="28" column="11" selection-start="796" selection-end="796" vertical-scroll-proportion="0.3048576" vertical-offset="238" max-vertical-offset="1455">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/divided_kingdom/apps/player/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="21" column="0" selection-start="625" selection-end="625" vertical-scroll-proportion="0.0" vertical-offset="18" max-vertical-offset="615">
+              <folding>
+                <element signature="e#0#43#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="admin.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/divided_kingdom/apps/player/admin.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="5" column="33" selection-start="164" selection-end="164" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/divided_kingdom/apps/core/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="8" column="54" selection-start="227" selection-end="300" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="300">
+              <folding>
+                <element signature="e#0#43#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -38,7 +75,11 @@
         <entry file="file://$PROJECT_DIR$/divided_kingdom/templates/base.html">
           <provider selected="true" editor-type-id="text-editor">
             <state line="6" column="29" selection-start="156" selection-end="156" vertical-scroll-proportion="-3.75" vertical-offset="0" max-vertical-offset="225">
-              <folding />
+              <folding>
+                <marker date="1399075306000" expanded="true" signature="31:187" placeholder="..." />
+                <marker date="1399075306000" expanded="true" signature="40:116" placeholder="..." />
+                <marker date="1399075306000" expanded="true" signature="125:179" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -57,6 +98,10 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/divided_kingdom/templates/base.html" />
+        <option value="$PROJECT_DIR$/divided_kingdom/apps/core/models.py" />
+        <option value="$PROJECT_DIR$/divided_kingdom/apps/player/models.py" />
+        <option value="$PROJECT_DIR$/divided_kingdom/apps/player/admin.py" />
+        <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/divided_kingdom/settings.py" />
       </list>
     </option>
@@ -99,6 +144,10 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="divided_kingdom" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -143,6 +192,50 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="divided_kingdom" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="divided_kingdom" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="divided_kingdom" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="player" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="divided_kingdom" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="divided_kingdom" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="divided_kingdom" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -156,6 +249,11 @@
     <property name="recentsLimit" value="5" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../sidecars/sidekick.sidecarsinc.com" />
+  </component>
+  <component name="PyConsoleOptionsProvider">
+    <option name="myPythonConsoleState">
+      <console-settings />
+    </option>
   </component>
   <component name="RunManager" selected="Django server.divided_kingdom">
     <configuration default="true" type="DjangoTestsConfigurationType" factoryName="Django tests">
@@ -411,13 +509,51 @@
     <entry file="file://$PROJECT_DIR$/divided_kingdom/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="6" column="29" selection-start="156" selection-end="156" vertical-scroll-proportion="-3.75" vertical-offset="0" max-vertical-offset="225">
+          <folding>
+            <marker date="1399075306000" expanded="true" signature="31:187" placeholder="..." />
+            <marker date="1399075306000" expanded="true" signature="40:116" placeholder="..." />
+            <marker date="1399075306000" expanded="true" signature="125:179" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/divided_kingdom/apps/core/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="54" selection-start="227" selection-end="300" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="300">
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/divided_kingdom/apps/player/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="0" selection-start="625" selection-end="625" vertical-scroll-proportion="0.0" vertical-offset="18" max-vertical-offset="615">
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/divided_kingdom/apps/player/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="33" selection-start="164" selection-end="164" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="12" selection-start="26" selection-end="26" vertical-scroll-proportion="0.025125628" vertical-offset="0" max-vertical-offset="597">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/divided_kingdom/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="4" selection-start="1035" selection-end="1035" vertical-scroll-proportion="0.5527638" vertical-offset="270" max-vertical-offset="1365">
+        <state line="28" column="11" selection-start="796" selection-end="796" vertical-scroll-proportion="0.3048576" vertical-offset="238" max-vertical-offset="1455">
           <folding />
         </state>
       </provider>
