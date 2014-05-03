@@ -1,0 +1,4 @@
+Django==1.6.4
+South==0.8.4
+django-annoying==0.7.9
+wsgiref==0.1.2
