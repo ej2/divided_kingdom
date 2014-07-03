@@ -1,0 +1,17 @@
+{% load apps_core %}
+<div class="form-group{% if field.errors %} error{% endif %}{% if hide %} hidden{% endif %}">
+  {% if field.label %}
+  <label class="control-label">{{ field.label }}:</label>
+  {% endif %}
+
+  <div class="col-lg-10">
+    {{ field }}
+    {% if show_required and not field.field.required %}
+      <span class="help-inline">(optional)</span>
+    {% endif %}
+    {% errors field.form field=field.name %}
+    {% if field.help_text %}
+      <p class="help-block">{{ field.help_text }}</p>
+    {% endif %}
+  </div>
+</div>

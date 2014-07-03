@@ -1,0 +1,14 @@
+{% load apps_core %}
+<div class="control-group{% if field.errors %} error{% endif %}{% if hide %} hidden{% endif %}">
+  <label class="control-label"></label>
+
+  <div class="controls">
+    <label class="checkbox">
+      {{ field }}{{ field.label }}
+      {% errors field.form field=field.name %}
+      {% if field.help_text %}
+        <p class="help-block">{{ field.help_text }}</p>
+      {% endif %}
+    </label>
+  </div>
+</div>

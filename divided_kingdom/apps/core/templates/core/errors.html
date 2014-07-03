@@ -1,0 +1,13 @@
+{% if as_alert %}
+  <div class="alert alert-error">
+{% else %}
+  <p class="help-block">
+{% endif %}
+{% for error in errors %}
+  <span>{{ error }}</span>
+{% endfor %}
+{% if as_alert %}
+  </div>
+{% else %}
+  </p>
+{% endif %}

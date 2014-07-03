@@ -1,0 +1,12 @@
+{% load apps_core %}
+<div class="control-group{% if field.errors %} error{% endif %}{% if hide %} hidden{% endif %}">
+  <label class="control-label">{{ field.label }}:</label>
+
+  <div class="controls">
+    {% for radio in field %}
+      <label class="radio inline">
+        {{ radio }}
+      </label>
+    {% endfor %}
+  </div>
+</div>

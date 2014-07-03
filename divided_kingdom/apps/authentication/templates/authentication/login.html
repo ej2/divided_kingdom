@@ -1,0 +1,34 @@
+{% extends "internal.html" %}
+{% load apps_core %}
+
+{% block title %}
+  Divided Kingdom | Login
+{% endblock %}
+
+{% block content %}
+
+  <div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-4">
+      <div class="well bs-component">
+          {% messages %}
+          {% errors form %}
+
+          <form class="form-horizontal">
+            <fieldset>
+              <legend>Login</legend>
+
+            {% formfield form.email %}
+            {% formfield form.password %}
+
+
+              <button type="submit" class="btn btn-primary">Login</button>
+              {% csrf_token %}
+
+            </fieldset>
+          </form>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
