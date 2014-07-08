@@ -1,0 +1,26 @@
+{% load apps_game %}
+
+<div style="width:300px;">
+  <div class="pull-left">
+    <img src="{{ STATIC_URL }}images/blank_avatar_male_small.jpg" style="border:1px solid black;margin: 2px;height: 44px;">
+  </div>
+  <div class="right">
+    <a href="{% url "player:detail" player.pk %}">{{ player.name }}</a>
+
+    <div style="font:10px verdana; padding:2px;color:white;">
+      <table>
+        <tr>
+          <td>
+             {% indicator_bar "HP" 100 player.current_health player.total_health "red" %}
+          </td>
+          <td>
+            {% indicator_bar "ST" 100 player.current_stamina player.total_stamina "green" %}
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+

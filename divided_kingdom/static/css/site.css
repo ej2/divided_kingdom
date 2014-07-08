@@ -1,0 +1,27 @@
+.main-content
+{
+  padding: 10px;
+}
+
+.statusBarTitle
+{
+  color: White;
+}
+
+.statusBarData
+{
+  border: 1px solid white;
+  background-image: url("../images/ui/bar-black.png");
+}
+
+.gold
+{
+    font-weight: bold;
+    color: #D7DF01;
+}
+
+.xp
+{
+  font-weight: bold;
+  color: #81F781;
+}

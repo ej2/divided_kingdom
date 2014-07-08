@@ -1,0 +1,28 @@
+{% extends "internal.html" %}
+
+{% block content %}
+
+  <div>
+
+    <h2>{{ player.location.name }}</h2>
+    <p>
+      {{ player.location.description }}
+    </p>
+
+    <h4>Services</h4>
+    <ul>
+      {% for service in player.location.services.all %}
+        <li>{{ service.name }}</li>
+      {% endfor %}
+    </ul>
+
+    <h4>Routes</h4>
+    <ul>
+    {% for route in player.location.starting_routes.all %}
+      <li>
+        <a href="{% url "game:travel" route.pk %}">Travel to {{ route.end_location.name }} on {{ route.name }}.</a></li>
+    {% endfor %}
+    </ul>
+  </div>
+
+{% endblock %}

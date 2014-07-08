@@ -1,0 +1,34 @@
+{% extends "internal.html" %}
+
+{% block content %}
+
+  <div>
+
+    <h2>{{ player.route.name }}</h2>
+    <p>
+      You are traveling {{ player.route.name }}.
+      There are approximately {{ remaining_miles }} miles until you reach {{ player.route.end_location.name }}.
+    </p>
+
+    {% for game_message in game_messages %}
+      <p>{{ game_message.message|safe }}</p>
+    {% endfor %}
+
+
+    {% if event %}
+      <div>
+        {% for action in event.actions.all %}
+          <a href="{% url "game:action" action.pk %}">{{ action.title }}</a> |
+        {% endfor %}
+
+      </div>
+    {% else %}
+      <div>
+        <a href="{% url "game:backward" %}">Turn Back</a> |
+        <a href="{% url "game:forward" %}">Go forward</a> |
+        <a href="{% url "game:search" %}">Search the area</a> |
+      </div>
+    {% endif %}
+  </div>
+
+{% endblock %}

@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load apps_player %}
 
 {% block topbar %}
   <div class="bs-component">
@@ -9,11 +10,11 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Divided Kingdom</a>
+        <a class="navbar-brand" href="{% url "site:index" %}">Divided Kingdom</a>
       </div>
       <div class="navbar-collapse collapse navbar-responsive-collapse">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Active</a></li>
+          <li class="active"><a href="{% url "game:play" %}">Play</a></li>
           <li><a href="#">Link</a></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
@@ -28,6 +29,11 @@
             </ul>
           </li>
         </ul>
+
+        <div class="navbar-right">
+
+          {% player_info user %}
+        </div>
       </div>
     </div>
   </div>

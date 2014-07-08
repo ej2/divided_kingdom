@@ -9,8 +9,10 @@ from divided_kingdom.apps.player.models import Player
 
 @login_required
 def create(request):
+    user = request.user
+
     if request.method == "POST":
-        form = PlayerForm(request.POST)
+        form = PlayerForm(data=request.POST, user=user)
 
         if form.is_valid():
             player = form.save()
@@ -18,7 +20,7 @@ def create(request):
 
             return redirect(reverse("player:detail", args=(player.pk,)))
     else:
-        form = PlayerForm()
+        form = PlayerForm(user=user)
 
     context = RequestContext(request, {
         "form": form,

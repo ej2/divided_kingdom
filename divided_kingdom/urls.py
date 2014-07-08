@@ -13,5 +13,6 @@ urlpatterns = patterns('',
     url(r'^accounts/', include('registration.backends.default.urls')),
     url(r"^site/", include("divided_kingdom.apps.site.urls", namespace="site")),
     url(r"^player", include("divided_kingdom.apps.player.urls", namespace="player")),
+    url(r"^game/", include("divided_kingdom.apps.game.urls.game", namespace="game")),
 )
 

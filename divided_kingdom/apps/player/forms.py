@@ -11,6 +11,7 @@ class PlayerForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         self.instance = kwargs.pop("instance", None)
+        self.user = kwargs.pop("user", None)
 
         super(PlayerForm, self).__init__(*args, **kwargs)
 
@@ -38,7 +39,7 @@ class PlayerForm(forms.Form):
         player.name = data.get("name")
         player.gender = data.get("gender")
         player.age = data.get("age")
-
+        player.user = self.user
         player.xp = 0
 
         player.save()

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from divided_kingdom.apps.location.models import Route, Location
+from divided_kingdom.apps.location.models import Route, Location, Service
 from divided_kingdom.apps.player.models import Player
 
 
@@ -17,5 +17,13 @@ class LocationModelAdmin(admin.ModelAdmin):
     list_per_page = 25
 
 
+class ServiceModelAdmin(admin.ModelAdmin):
+    list_display = ("id", "name", "service_type")
+    search_fields = ("id", "name", "type")
+    raw_id_fields = ("created_by", "updated_by",)
+    list_per_page = 25
+
+
 admin.site.register(Location, LocationModelAdmin)
 admin.site.register(Route, RouteModelAdmin)
+admin.site.register(Service, ServiceModelAdmin)

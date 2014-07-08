@@ -1,0 +1,20 @@
+[
+    {
+        "pk": 2,
+        "model": "auth.user",
+        "fields": {
+            "username": "admin",
+            "first_name": "",
+            "last_name": "",
+            "is_active": true,
+            "is_superuser": true,
+            "is_staff": true,
+            "last_login": "2014-07-03T22:32:23.219Z",
+            "groups": [],
+            "user_permissions": [],
+            "password": "pbkdf2_sha256$12000$2OedcVPVbRyk$AVRzv5hwZ8AhkwJjfKfxZQ9HgcTX/kwzNNtMp5EsIYI=",
+            "email": "edward.emanuel@gmail.com",
+            "date_joined": "2014-07-03T22:32:20.744Z"
+        }
+    }
+]

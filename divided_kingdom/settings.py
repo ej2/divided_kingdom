@@ -14,6 +14,9 @@ from os.path import join, dirname
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
+ADMINS = (
+    ("Edward Emanuel", "edward.emanuel@gmail.com"),)
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
@@ -53,12 +56,15 @@ INSTALLED_APPS = (
     'django_extensions',
     'registration',
     'bootstrap3',
+    'annoying',
 
     'divided_kingdom.apps.core',
     'divided_kingdom.apps.site',
     'divided_kingdom.apps.authentication',
     'divided_kingdom.apps.player',
     'divided_kingdom.apps.registration',
+    'divided_kingdom.apps.game',
+    'divided_kingdom.apps.location',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -81,7 +87,7 @@ WSGI_APPLICATION = 'divided_kingdom.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'divided_kingdom.sqlite3'),
     }
 }
 
@@ -112,10 +118,14 @@ STATIC_ROOT = join(PROJECT_ROOT, "public", "static")
 
 STATIC_URL = '/static/'
 
+
 # Additional locations of static files
 STATICFILES_DIRS = (
     join(PROJECT_ROOT, "static"),)
 
+FIXTURE_DIRS = (
+    join(PROJECT_ROOT, "fixtures"),
+    join(PROJECT_ROOT, "fixtures", "seed"),)
 
 
 # Sendgrid email settings
