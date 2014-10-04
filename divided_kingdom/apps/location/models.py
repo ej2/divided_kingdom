@@ -1,6 +1,6 @@
-
 from divided_kingdom.apps.core.models import AuditModel
 from django.db import models
+
 
 SERVICE_TYPE = (
     ("M", "Merchant",),
@@ -38,3 +38,4 @@ class Service(AuditModel):
     service_type = models.CharField(max_length=1, choices=SERVICE_TYPE)
     location = models.ForeignKey(Location, related_name="services")
     hidden = models.BooleanField(default=False)
+    npc = models.ForeignKey("npc.NPC", null=True, blank=True)

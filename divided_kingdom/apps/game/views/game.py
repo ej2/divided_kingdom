@@ -4,10 +4,13 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.template import RequestContext
 from django.template.response import TemplateResponse
-from divided_kingdom.apps.game.helpers.event import resolve_event
-from divided_kingdom.apps.game.helpers.helper import get_route, get_location
-from divided_kingdom.apps.game.models import GameMessage, EventAction, Reward
-from divided_kingdom.apps.location.models import Location, Route
+from divided_kingdom.apps.game.helpers.event import resolve_event, generate_event
+from divided_kingdom.apps.game.helpers.helper import get_game_messages, create_game_message
+from divided_kingdom.apps.game.helpers.reward import calculate_reward
+from divided_kingdom.apps.game.models import EventAction, Reward, EventLog
+from divided_kingdom.apps.location.models import Route, Service
+from divided_kingdom.apps.npc.helpers.dialog import get_merchant_greeting
+from divided_kingdom.apps.npc.helpers.moods import get_random_mood
 from divided_kingdom.apps.player.models import Player
 
 
@@ -16,12 +19,38 @@ def play(request):
     user = request.user
     player = get_object_or_None(Player, user=user)
 
-    if player.route is not None:
+    if player is None:
+        return redirect("player:new")
+
+    context = {
+        "user": player.user,
+        "player": player,
+    }
+
+    event_log = get_object_or_None(EventLog, player=player, resolved=False)
+
+    if event_log:
+        #Player is in an Event
+        template = "game/event.html"
+        context["event"] = event_log.game_event
+
+    elif player.route is not None:
         #Player is traveling on route
-        return TemplateResponse(request, "game/route.html", RequestContext(request, get_route(player)))
+        template = "game/route.html"
+        context["route"] = player.route
+        context["remaining_miles"] = player.route.distance - player.distance_marker
+
+        event = generate_event(player)
+        if event:
+            template = "game/event.html"
+            context["event"] = event
     else:
         #Player is at location
-        return TemplateResponse(request, "game/location.html", RequestContext(request, get_location(player)))
+        template = "game/location.html"
+        context["location"] = player.location
+
+    context["game_messages"] = get_game_messages(player)
+    return TemplateResponse(request, template, RequestContext(request, context))
 
 
 def forward(request):
@@ -73,39 +102,20 @@ def action(request, action_id):
 
     i = random.randint(1, 100)
 
-    game_message = GameMessage()
-    game_message.player = player
-
     if i <= event_action.success_chance:
         #SUCCESS!
-        #TODO: update this
-        reward = get_object_or_None(Reward, action=event_action)
+        reward_message = calculate_reward(player, event_action, True)
 
-        gold_reward_text = ""
-        xp_reward_text = ""
-
-        if reward:
-            if reward.min_gold > 0:
-                gold_amount = random.randint(reward.min_gold, reward.max_gold)
-                gold_reward_text = "<BR>You gain <span class='gold'>{0} gold</span>.".format(gold_amount)
-                player.gold += gold_amount
-
-            if reward.XP > 0:
-                player.xp += reward.XP
-                xp_reward_text = "<BR>You gain <span class='xp'>{0} XP</span>.".format(reward.XP)
-
-            player.save()
-
-        game_message.message = "{0} {1}{2}{3}".format(
-            event_action.action_text, event_action.success_text, gold_reward_text, xp_reward_text)
+        create_game_message(player, "{0} {1}{2}".format(
+            event_action.action_text, event_action.success_text, reward_message))
 
     else:
         #FAILURE!
-        game_message.message = "{0} {1}".format(event_action.action_text, event_action.failure_text)
+        reward_message = calculate_reward(player, event_action, False)
+        create_game_message(player, "{0} {1}{2}".format(
+            event_action.action_text, event_action.failure_text, reward_message))
 
-    game_message.save()
     resolve_event(player, event_action.event)
-
     return redirect("game:play")
 
 
@@ -115,7 +125,7 @@ def search(request):
 
     random_event = random.randint(1, 8)
 
-    if random_event == 1:
+    if random_event < 6:
         result = "You look around and find nothing of interest."
 
     elif random_event == 6:
@@ -137,7 +147,7 @@ def search(request):
         player.gold += coins
         player.save()
 
-        location = random.randint(1,5)
+        location = random.randint(1, 5)
 
         if location == 1:
             result = "You find {0} gold coins in the bushes.".format(coins)
@@ -150,9 +160,22 @@ def search(request):
         elif location == 5:
             result = "You find {0} gold coins in the weeds.".format(coins)
 
-    game_message = GameMessage()
-    game_message.player = player
-    game_message.message = result
-    game_message.save()
-
+    create_game_message(player, result)
     return redirect("game:play")
+
+
+def rest(request):
+    user = request.user
+    player = get_object_or_None(Player, user=user)
+
+    stamina_gained = random.randint(5, 10)
+    health_gained = random.randint(1, 3)
+
+    stamina_message = player.adjust_stamina(stamina_gained)
+    health_message = player.adjust_health(health_gained)
+
+    result = "You rest for a few minutes. <BR>{0}<BR>{1}".format(health_message, stamina_message)
+
+    create_game_message(player, result)
+    return redirect("game:play")
+

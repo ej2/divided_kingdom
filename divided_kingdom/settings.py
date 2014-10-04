@@ -64,7 +64,9 @@ INSTALLED_APPS = (
     'divided_kingdom.apps.player',
     'divided_kingdom.apps.registration',
     'divided_kingdom.apps.game',
+    'divided_kingdom.apps.item',
     'divided_kingdom.apps.location',
+    'divided_kingdom.apps.npc',
 )
 
 MIDDLEWARE_CLASSES = (

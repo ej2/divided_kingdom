@@ -12,8 +12,11 @@ register = template.Library()
 def player_info(user):
     player = get_object_or_None(Player, user=user)
 
-    return render_to_string("player/header_info.html", {
-        "user": user,
-        "player": player,
-        "STATIC_URL": STATIC_URL
-        })
+    if player:
+        return render_to_string("player/header_info.html", {
+            "user": user,
+            "player": player,
+            "STATIC_URL": STATIC_URL
+            })
+    else:
+        return ""

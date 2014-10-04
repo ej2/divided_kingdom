@@ -1,11 +1,13 @@
 .main-content
 {
-  padding: 10px;
+    padding: 10px;
 }
 
 .statusBarTitle
 {
-  color: White;
+    color: White;
+    font-family: 'Press Start 2P';
+    font-size: 8px;
 }
 
 .statusBarData
@@ -24,4 +26,52 @@
 {
   font-weight: bold;
   color: #81F781;
+}
+
+.health
+{
+    font-weight: bold;
+    color: red;
+}
+
+.stamina
+{
+    font-weight: bold;
+    color: green;
+}
+
+.location-title
+{
+    font-family: 'Press Start 2P', cursive;
+    font-size: 16px;
+}
+
+.route-title
+{
+    font-family: 'Press Start 2P', cursive;
+    font-size: 16px;
+}
+
+.menu
+{
+    font-family: 'Press Start 2P';
+    font-size: 8px;
+}
+
+.site-name
+{
+    font-size: 16px;
+}
+
+
+.player-name
+{
+    font-family: 'Press Start 2P';
+    font-size: 12px;
+    vertical-align: bottom;
+}
+
+.chat-bar {
+    width: 400px;
+    margin: 5px;
 }

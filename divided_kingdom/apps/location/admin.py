@@ -4,7 +4,7 @@ from divided_kingdom.apps.player.models import Player
 
 
 class RouteModelAdmin(admin.ModelAdmin):
-    list_display = ("id", "name", "distance")
+    list_display = ("id", "name", "distance", "start_location", "end_location")
     search_fields = ("id", "name", "distance")
     raw_id_fields = ("created_by", "updated_by",)
     list_per_page = 25
@@ -18,7 +18,7 @@ class LocationModelAdmin(admin.ModelAdmin):
 
 
 class ServiceModelAdmin(admin.ModelAdmin):
-    list_display = ("id", "name", "service_type")
+    list_display = ("id", "name", "service_type", "location", "hidden")
     search_fields = ("id", "name", "type")
     raw_id_fields = ("created_by", "updated_by",)
     list_per_page = 25

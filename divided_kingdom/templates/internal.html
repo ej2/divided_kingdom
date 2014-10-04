@@ -10,22 +10,16 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="{% url "site:index" %}">Divided Kingdom</a>
+        <a class="navbar-brand menu site-name" href="{% url "site:index" %}">Divided Kingdom</a>
       </div>
       <div class="navbar-collapse collapse navbar-responsive-collapse">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="{% url "game:play" %}">Play</a></li>
-          <li><a href="#">Link</a></li>
+          <li class="active"><a class="menu" href="{% url "game:play" %}">Play</a></li>
+          <li><a  class="menu" href="#">Link</a></li>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+            <a href="#" class="dropdown-toggle menu" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li class="divider"></li>
-              <li class="dropdown-header">Dropdown header</li>
-              <li><a href="#">Separated link</a></li>
-              <li><a href="#">One more separated link</a></li>
+              <li><a class="menu" href="{% url "authentication:logout" %}">Log Out</a></li>
             </ul>
           </li>
         </ul>
@@ -37,4 +31,11 @@
       </div>
     </div>
   </div>
+{% endblock %}
+
+{% block footer %}
+<div>
+  <input class="chat-bar" type="text">
+  <input class="" type="button" value="Send">
+</div>
 {% endblock %}

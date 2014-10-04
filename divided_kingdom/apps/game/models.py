@@ -52,6 +52,9 @@ class Reward(AuditModel):
     min_gold = models.IntegerField(default=0)
     max_gold = models.IntegerField(default=0)
     XP = models.IntegerField(default=0)
+    success = models.BooleanField(default=True)
+    health = models.IntegerField(default=0)
+    stamina = models.IntegerField(default=0)
 
 
 class EventLog(AuditModel):

@@ -15,11 +15,12 @@
     {% endfor %}
 
     <div>
-      <a href="{% url "game:backward" %}">Turn Back</a> |
-      <a href="{% url "game:forward" %}">Go forward</a> |
-      <a href="{% url "game:search" %}">Explore</a> |
-      <a href="{% url "game:rest" %}">Rest</a>
+      {% for action in event.actions.all %}
+        {% if not forloop.first %}|{% endif %}
+        <a href="{% url "game:action" action.pk %}">{{ action.title }}</a>
+      {% endfor %}
     </div>
+
   </div>
 
 {% endblock %}

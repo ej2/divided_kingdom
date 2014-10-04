@@ -5,7 +5,12 @@
     <img src="{{ STATIC_URL }}images/blank_avatar_male_small.jpg" style="border:1px solid black;margin: 2px;height: 44px;">
   </div>
   <div class="right">
-    <a href="{% url "player:detail" player.pk %}">{{ player.name }}</a>
+    <a class="player-name" href="{% url "player:detail" player.pk %}">{{ player.name }}</a>
+
+    <span class="pull-right gold">
+      Gold: {{ player.gold }}
+    </span>
+
 
     <div style="font:10px verdana; padding:2px;color:white;">
       <table>

@@ -14,5 +14,6 @@ urlpatterns = patterns('',
     url(r"^site/", include("divided_kingdom.apps.site.urls", namespace="site")),
     url(r"^player", include("divided_kingdom.apps.player.urls", namespace="player")),
     url(r"^game/", include("divided_kingdom.apps.game.urls.game", namespace="game")),
+    url(r"^item", include("divided_kingdom.apps.item.urls", namespace="item")),
 )
 

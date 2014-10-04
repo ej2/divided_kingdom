@@ -69,7 +69,10 @@ class Player(AuditModel):
         if self.current_health > self.total_health:
             self.current_health = self.total_health
 
-        return self.current_health
+        result = "You {0} <span class='health'>{1} health</span>.".format(
+            "gain" if amount > 0 else "lose", abs(amount))
+
+        return result
 
     def adjust_stamina(self, amount):
         self.current_stamina += amount
@@ -80,3 +83,7 @@ class Player(AuditModel):
         if self.current_stamina > self.total_stamina:
             self.current_stamina = self.total_stamina
 
+        result = "You {0} <span class='stamina'>{1} stamina</span>.".format(
+            "gain" if amount > 0 else "lose", abs(amount))
+
+        return result

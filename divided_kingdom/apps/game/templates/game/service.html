@@ -1,0 +1,18 @@
+{% extends "internal.html" %}
+
+{% block content %}
+
+  <div>
+
+    <h2 class="location-title">{{ service.name }}</h2>
+    <p>
+      {{ service.description }}
+    </p>
+
+    <p>The merchant seems {{ service.npc.mood }}.</p>
+    <p>The merchant says "{{ greeting }}"</p>
+
+    <a href="{% url "game:play" %}">Exit</a>
+  </div>
+
+{% endblock %}

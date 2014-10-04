@@ -1,4 +1,4 @@
-{% extends "internal.html" %}
+{% extends "base.html" %}
 {% load apps_core %}
 
 {% block title %}
@@ -21,9 +21,8 @@
             {% formfield form.email %}
             {% formfield form.password %}
 
-
-              <button type="submit" class="btn btn-primary">Login</button>
-              {% csrf_token %}
+            <button type="submit" class="btn btn-primary">Login</button>
+            {% csrf_token %}
 
             </fieldset>
           </form>
