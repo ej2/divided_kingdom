@@ -1,5 +1,6 @@
 from django.db import models
 from divided_kingdom.apps.core.models import AuditModel
+from divided_kingdom.apps.item.models import ItemType
 from divided_kingdom.apps.location.models import Route
 from divided_kingdom.apps.player.models import Player, MotivatingForce
 
@@ -55,6 +56,7 @@ class Reward(AuditModel):
     success = models.BooleanField(default=True)
     health = models.IntegerField(default=0)
     stamina = models.IntegerField(default=0)
+    item_type = models.ForeignKey(ItemType, null=True, blank=True)
 
 
 class EventLog(AuditModel):

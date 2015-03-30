@@ -9,8 +9,32 @@
       {{ service.description }}
     </p>
 
-    <p>The merchant seems {{ service.npc.mood }}.</p>
-    <p>The merchant says "{{ greeting }}"</p>
+    {% for game_message in game_messages %}
+      <p>{{ game_message.message|safe }}</p>
+    {% endfor %}
+
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th style="width: 50px;">Price</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      {% for item in service.items.all %}
+        <tr>
+          <td>{{ item.item_type.name }}</td>
+          <td class="gold numeric">{{ item.price }}</td>
+          <td>
+            <a href="{% url "game:service:inquire" item.pk %}">Inquire</a>
+            <a href="{% url "game:service:purchase" item.pk %}">Purchase</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+
+    <br>
 
     <a href="{% url "game:play" %}">Exit</a>
   </div>

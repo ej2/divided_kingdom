@@ -26,6 +26,8 @@ class Route(AuditModel):
     start_location = models.ForeignKey(Location, related_name="starting_routes")
     end_location = models.ForeignKey(Location, related_name="ending_routes")
     distance = models.IntegerField()
+    combat_chance = models.IntegerField(default=0)  # how likely combat will happen on route
+    event_chance = models.IntegerField(default=0)   # how likely events will happen on route
 
     def __unicode__(self):
         return self.name
@@ -39,3 +41,13 @@ class Service(AuditModel):
     location = models.ForeignKey(Location, related_name="services")
     hidden = models.BooleanField(default=False)
     npc = models.ForeignKey("npc.NPC", null=True, blank=True)
+
+    def __unicode__(self):
+        return "{0} in {1}".format(self.name, self.location.name)
+
+
+#items for sale at service location
+class ServiceItemType(AuditModel):
+    service = models.ForeignKey(Service, related_name="items")
+    item_type = models.ForeignKey("item.ItemType")
+    price = models.IntegerField()

@@ -4,11 +4,14 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.template import RequestContext
 from django.template.response import TemplateResponse
+from divided_kingdom.apps.game.helpers.combat import basic_attack, basic_mob_attack
 from divided_kingdom.apps.game.helpers.event import resolve_event, generate_event
 from divided_kingdom.apps.game.helpers.helper import get_game_messages, create_game_message
-from divided_kingdom.apps.game.helpers.reward import calculate_reward
+from divided_kingdom.apps.game.helpers.reward import calculate_reward, combat_reward
 from divided_kingdom.apps.game.models import EventAction, Reward, EventLog
-from divided_kingdom.apps.location.models import Route, Service
+from divided_kingdom.apps.location.models import Route, Service, Location
+from divided_kingdom.apps.mob.helpers.encounter import random_encounter
+from divided_kingdom.apps.mob.models import Mob
 from divided_kingdom.apps.npc.helpers.dialog import get_merchant_greeting
 from divided_kingdom.apps.npc.helpers.moods import get_random_mood
 from divided_kingdom.apps.player.models import Player
@@ -27,42 +30,109 @@ def play(request):
         "player": player,
     }
 
-    event_log = get_object_or_None(EventLog, player=player, resolved=False)
+    if player.status == 'C': #Combat
+        mob = get_object_or_None(Mob, player=player, current_health__gt=0)
 
-    if event_log:
+        template = "game/combat.html"
+        context["mob"] = mob
+
+    elif player.status == 'E': #Event
+        event_log = get_object_or_None(EventLog, player=player, resolved=False)
         #Player is in an Event
         template = "game/event.html"
         context["event"] = event_log.game_event
 
-    elif player.route is not None:
+    elif player.status == 'L': #Location
+        template = "game/location.html"
+        context["location"] = player.location
+
+    elif player.status == 'R': #Route
         #Player is traveling on route
         template = "game/route.html"
         context["route"] = player.route
         context["remaining_miles"] = player.route.distance - player.distance_marker
 
-        event = generate_event(player)
-        if event:
-            template = "game/event.html"
-            context["event"] = event
-    else:
-        #Player is at location
-        template = "game/location.html"
-        context["location"] = player.location
+        event_chance = random.randint(1, 100)
+
+        if event_chance < player.route.event_chance:
+            combat_chance = random.randint(1, 100)
+
+            if combat_chance < player.route.combat_chance:
+                mob = random_encounter(player)
+                player.status = 'C'
+                player.save()
+
+                template = "game/combat.html"
+                context["mob"] = mob
+
+            else:
+                event = generate_event(player)
+                player.status = 'E'
+                player.save()
+
+                template = "game/event.html"
+                context["event"] = event
+
 
     context["game_messages"] = get_game_messages(player)
     return TemplateResponse(request, template, RequestContext(request, context))
+
+    #----------------
+    #event_log = get_object_or_None(EventLog, player=player, resolved=False)
+
+    #if event_log:
+        #Player is in an Event
+    #    template = "game/event.html"
+    #    context["event"] = event_log.game_event
+
+    #elif mob:
+    #    template = "game/combat.html"
+    #    context["mob"] = mob
+
+    #elif player.route is not None:
+        #Player is traveling on route
+    #    template = "game/route.html"
+    #    context["route"] = player.route
+    #    context["remaining_miles"] = player.route.distance - player.distance_marker
+
+    #    event_chance = random.randint(1, 100)
+
+    #    if event_chance < player.route.event_chance:
+    #        combat_chance = random.randint(1, 100)
+
+    #        if combat_chance < player.route.combat_chance:
+    #            mob = random_encounter(player)
+    #            template = "game/combat.html"
+    #            context["mob"] = mob
+
+    #        else:
+    #            event = generate_event(player)
+    #            template = "game/event.html"
+    #            context["event"] = event
+    #else:
+    #    #Player is at location
+    #    if player.location is None:
+    #        player.location = Location.objects.get(pk=1)
+    #        player.save()
+
+    #    template = "game/location.html"
+    #    context["location"] = player.location
+
+    #context["game_messages"] = get_game_messages(player)
+    #return TemplateResponse(request, template, RequestContext(request, context))
 
 
 def forward(request):
     user = request.user
     player = get_object_or_None(Player, user=user)
-
+    player.status = 'R'
     player.distance_marker += 1
 
     if player.distance_marker >= player.route.distance:
         player.distance_marker = 0
         player.location = player.route.end_location
         player.route = None
+        player.status = "L"
 
     player.save()
     return redirect("game:play")
@@ -71,13 +141,14 @@ def forward(request):
 def backward(request):
     user = request.user
     player = get_object_or_None(Player, user=user)
-
+    player.status = 'R'
     player.distance_marker -= 1
 
     if player.distance_marker <= 0:
         player.distance_marker = 0
         player.location = player.route.start_location
         player.route = None
+        player.status = "L"
 
     player.save()
     return redirect("game:play")
@@ -89,6 +160,7 @@ def travel(request, route_id):
 
     player.route = get_object_or_None(Route, pk=route_id)
     player.distance_marker = 0
+    player.status = 'R'
     player.save()
 
     return redirect("game:play")
@@ -179,3 +251,27 @@ def rest(request):
     create_game_message(player, result)
     return redirect("game:play")
 
+
+def attack(request):
+    user = request.user
+    player = get_object_or_None(Player, user=user)
+    mob = get_object_or_None(Mob, player=player, current_health__gt=0)
+
+    result = basic_attack(player, mob)
+    create_game_message(player, result)
+
+    if mob:
+        if mob.current_health <= 0:
+            result = "The {0} dies.".format(mob.name)
+            create_game_message(player, result)
+
+            result = combat_reward(player, mob)
+            create_game_message(player, result)
+
+            player.status = "R"
+            player.save()
+        else:
+            result = basic_mob_attack(player, mob)
+            create_game_message(player, result)
+
+    return redirect("game:play")

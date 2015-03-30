@@ -10,8 +10,8 @@ class ItemTypeModelAdmin(admin.ModelAdmin):
 
 
 class ItemTypePropertyModelAdmin(admin.ModelAdmin):
-    list_display = ("id", "item_type", "modifier_type", "stat_modified", "amount")
-    search_fields = ("id", "item_type", "modifier_type", "stat_modified", "amount")
+    list_display = ("id", "item_type", "modifier_type", "stat_modified", "min_amount", "max_amount")
+    search_fields = ("id", "item_type", "modifier_type", "stat_modified", "min_amount", "max_amount")
     raw_id_fields = ("created_by", "updated_by",)
     list_per_page = 25
 
@@ -24,8 +24,8 @@ class ItemModelAdmin(admin.ModelAdmin):
 
 
 class ItemPropertyModelAdmin(admin.ModelAdmin):
-    list_display = ("id", "item", "modifier_type", "stat_modified", "amount")
-    search_fields = ("id", "item", "modifier_type", "stat_modified", "amount")
+    list_display = ("id", "item", "modifier_type", "stat_modified", "min_amount", "max_amount")
+    search_fields = ("id", "item", "modifier_type", "stat_modified", "min_amount", "max_amount")
     raw_id_fields = ("created_by", "updated_by",)
     list_per_page = 25
 

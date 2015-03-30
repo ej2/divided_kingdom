@@ -1,10 +1,22 @@
 
 
-<table>
+<table class="table table-bordered" style="width:400px;">
   <tbody>
     {% for item in items %}
       <tr>
         <td>{{ item }}</td>
+        <td class="numeric" style="width:100px;">
+          {% if item.base_type == "WEA" %}
+            <a href="">Wield</a>
+          {% elif item.base_type == "ARM" %}
+            <a href="">Equip</a>
+          {% elif item.base_type == "CON" %}
+            <a href="{% url "game:inventory:use" item.pk %}">Use</a>
+          {% elif item.base_type == "QST" %}
+            <a href="">Use</a>
+          {% endif %}
+          | <a href="{% url "game:inventory:drop" item.pk %}">Drop</a>
+        </td>
       </tr>
     {% endfor %}
   </tbody>

@@ -6,6 +6,7 @@
         <option name="rootFolder" value="$MODULE_DIR$" />
         <option name="settingsModule" value="divided_kingdom/settings.py" />
         <option name="manageScript" value="manage.py" />
+        <option name="environment" value="&lt;map/&gt;" />
       </configuration>
     </facet>
   </component>
@@ -16,6 +17,14 @@
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />
+    <option name="TEMPLATE_FOLDERS">
+      <list>
+        <option value="$MODULE_DIR$/divided_kingdom/apps/item/templates" />
+        <option value="$MODULE_DIR$/divided_kingdom/apps/game/templates" />
+        <option value="$MODULE_DIR$/divided_kingdom/apps/player/templates" />
+        <option value="$MODULE_DIR$/divided_kingdom/apps/core/templates" />
+        <option value="$MODULE_DIR$/divided_kingdom/apps/site/templates" />
+      </list>
+    </option>
   </component>
 </module>
-

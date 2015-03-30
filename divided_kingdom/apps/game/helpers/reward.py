@@ -1,6 +1,7 @@
 import random
 from annoying.functions import get_object_or_None
 from divided_kingdom.apps.game.models import Reward
+from divided_kingdom.apps.item.helpers.item import create_item
 
 
 def calculate_reward(player, event_action, success):
@@ -8,6 +9,7 @@ def calculate_reward(player, event_action, success):
     reward = get_object_or_None(Reward, action=event_action, success=success)
 
     gold_reward_text = ""
+    item_reward_text = ""
     xp_reward_text = ""
     stamina_text = ""
     health_text = ""
@@ -33,9 +35,29 @@ def calculate_reward(player, event_action, success):
         if reward.stamina != 0:
             stamina_text = player.adjust_stamina(reward.stamina)
 
+        if reward.item_type:
+            item = create_item(reward.item_type)
+            item.player = player
+            item.save()
+
+            item_reward_text = "<BR>You receive a <span class='item'>{0}</span>.".format(item.name)
+
         player.save()
 
-        return "{0}{1}<BR>{2}<BR>{3}".format(
-            gold_reward_text, xp_reward_text, health_text, stamina_text)
+        return "{0}{1}{2}<BR>{3}<BR>{4}".format(
+            gold_reward_text, xp_reward_text, item_reward_text, health_text, stamina_text)
 
     return ""
+
+
+def combat_reward(player, mob):
+
+    xp_awarded = mob.xp_amount
+
+    #calculate bonus XP
+    xp_awarded += random.randint(1,5)
+
+    player.xp += xp_awarded
+    player.save()
+
+    return "You gain <span class='xp'>{0} XP</span>.".format(xp_awarded)

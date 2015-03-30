@@ -32,7 +32,8 @@ def create_item(item_type):
             item=item,
             modifier_type=item_property.modifier_type,
             stat_modified=item_property.stat_modified,
-            amount=item_property.amount
+            min_amount=item_property.min_amount,
+            max_amount=item_property.max_amount
         )
 
     return item

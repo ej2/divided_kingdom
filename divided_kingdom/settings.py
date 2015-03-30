@@ -66,7 +66,10 @@ INSTALLED_APPS = (
     'divided_kingdom.apps.game',
     'divided_kingdom.apps.item',
     'divided_kingdom.apps.location',
+    'divided_kingdom.apps.mob',
     'divided_kingdom.apps.npc',
+
+    'divided_kingdom.apps.phase',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -145,7 +148,7 @@ DEFAULT_FROM_EMAIL = "SideKick <info@sidecarsinc.com>"
 EMAIL_HOST = "smtp.sendgrid.net"
 EMAIL_PORT = 587
 EMAIL_HOST_USER = "sidecars"
-EMAIL_HOST_PASSWORD = "$ideCars1"
-EMAIL_SUBJECT_PREFIX = "[SideKick]"
+EMAIL_HOST_PASSWORD = "y72mzXgbHYRGry"
+EMAIL_SUBJECT_PREFIX = "[Divided Kingdom]"
 EMAIL_USE_TLS = True
 SERVER_EMAIL = 'system@sidecarsinc.com'

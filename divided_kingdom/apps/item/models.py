@@ -1,6 +1,6 @@
 from divided_kingdom.apps.core.models import AuditModel
 from django.db import models
-from divided_kingdom.apps.player.models import Player
+from divided_kingdom.apps.player.models import Player, STAT
 
 
 BASE_TYPE = (
@@ -34,25 +34,13 @@ CLASSIFICATION = (
 MODIFIER = (
     ("ADD", "Add",),
     ("SUB", "Subtract",),
-    ("MUL", "Multiply",),
-    ("DIV", "Divide",),
+    #("MUL", "Multiply",),
+    #("DIV", "Divide",),
 )
 
-STAT = (
-    ("STR", "strength",),
-    ("DEX", "dexterity",),
-    ("CON", "constitution",),
-    ("INT", "intelligence",),
-    ("WIL", "will_power",),
-    ("PER", "perception",),
-    ("ARC", "arcane_power",),
-    ("PRE", "presence",),
-    ("MAN", "manipulation",),
-    ("ATT", "attack",),
-    ("DEF", "defense",),
-    ("SPD", "speed",),
-    ("HP", "total_health",),
-    ("ST", "total_stamina",),
+
+CONSUMABLE_TYPE = (
+    ("HEALING",),
 )
 
 
@@ -88,13 +76,14 @@ class ItemTypeProperty(AuditModel):
     item_type = models.ForeignKey(ItemType, related_name="properties")
     modifier_type = models.CharField(max_length=3, choices=MODIFIER)
     stat_modified = models.CharField(max_length=3, choices=STAT)
-    amount = models.IntegerField()
+    min_amount = models.IntegerField(default=0)
+    max_amount = models.IntegerField(default=0)
 
     class Meta:
         verbose_name_plural = "Item Type Properties"
 
     def __unicode__(self):
-        return "{0} {1}{2}".format(self.stat_modified, self.modifier_type, self.amount)
+        return "{0} {1}({2}-{3})".format(self.stat_modified, self.modifier_type, self.min_amount, self.max_amount)
 
 
 class Item(AuditModel):
@@ -129,7 +118,8 @@ class ItemProperty(AuditModel):
     item = models.ForeignKey(Item, related_name="properties")
     modifier_type = models.CharField(max_length=3, choices=MODIFIER)
     stat_modified = models.CharField(max_length=3, choices=STAT)
-    amount = models.IntegerField()
+    min_amount = models.IntegerField(default=0)
+    max_amount = models.IntegerField(default=0)
 
     class Meta:
         verbose_name_plural = "Item Properties"

@@ -1,6 +1,8 @@
 from django.conf.urls import patterns, include, url
 
 from django.contrib import admin
+from divided_kingdom.apps.site import views
+
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -15,5 +17,10 @@ urlpatterns = patterns('',
     url(r"^player", include("divided_kingdom.apps.player.urls", namespace="player")),
     url(r"^game/", include("divided_kingdom.apps.game.urls.game", namespace="game")),
     url(r"^item", include("divided_kingdom.apps.item.urls", namespace="item")),
+
+
+    url(r"^phase", include("divided_kingdom.apps.phase.urls", namespace="phase")),
+
+    url(r"^$", views.index, name="index"),
 )
 

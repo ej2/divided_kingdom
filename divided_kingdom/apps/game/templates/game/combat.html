@@ -1,0 +1,41 @@
+{% extends "internal.html" %}
+{% load apps_game %}
+{% block content %}
+
+  <div>
+
+    <h2 class="route-title">Combat!</h2>
+    <p>
+      You are traveling {{ player.route.name }}.
+
+    </p>
+
+    <div class="player-name">
+      {{ mob.name }}
+    </div>
+
+     <div style="font:10px verdana; padding:2px;color:white;">
+      <table>
+        <tr>
+          <td>
+             {% indicator_bar "HP" 100 mob.current_health mob.total_health "red" %}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            {% indicator_bar "ST" 100 mob.current_stamina mob.total_stamina "green" %}
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    {% for game_message in game_messages %}
+      <p>{{ game_message.message|safe }}</p>
+    {% endfor %}
+
+    <div>
+      <a href="{% url "game:attack" %}">Attack</a> |
+    </div>
+  </div>
+
+{% endblock %}

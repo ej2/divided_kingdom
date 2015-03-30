@@ -121,6 +121,69 @@ MOOD = (
     "Weird"
 )
 
+GOOD_MOOD = (
+    "Amused",
+    "Blissful",
+    "Cheerful",
+    "Chipper",
+    "Content",
+    "Energetic",
+    "Excited",
+    "Giddy",
+    "Grateful",
+    "Happy",
+    "Hopeful",
+    "Jubilant",
+    "Peaceful",
+    "Surprised",
+    "Thankful",
+)
+
+BAD_MOOD = (
+    "Aggravated",
+    "Angry",
+    "Annoyed",
+    "Anxious",
+    "Cranky",
+    "Cynical",
+    "Depressed",
+    "Exhausted",
+    "Frustrated",
+    "Gloomy",
+    "Grumpy",
+    "Indifferent",
+    "Infuriated",
+    "Irate",
+    "Stressed",
+    "Uncomfortable",
+)
+
+NETURAL_MOOD = (
+    "Bored",
+    "Calm",
+    "Complacent",
+    "Content",
+    "Indifferent",
+    "Lazy",
+    "Mellow",
+    "Restless",
+    "Sleepy",
+    "Tired",
+)
 
 def get_random_mood():
     return random.choice(MOOD)
+
+
+def update_merchant_mood(player_npc):
+    if random.randint(1, 5) == 5:
+        if player_npc.opinion_of_player < 5 and player_npc.opinion_of_player > -5:
+            player_npc.mood = random.choice(NETURAL_MOOD)
+        elif player_npc.opinion_of_player > 5:
+            player_npc.mood = random.choice(GOOD_MOOD)
+        elif player_npc.opinion_of_player < -5:
+            player_npc.mood = random.choice(BAD_MOOD)
+        elif player_npc.opinion_of_player < -50:
+            player_npc.mood = "Infuriated"
+
+        player_npc.save()

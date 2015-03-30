@@ -5,6 +5,7 @@ from django.shortcuts import redirect, get_object_or_404
 from django.template import RequestContext
 from django.template.response import TemplateResponse
 from divided_kingdom.apps.core.game_settings import STARTING_LOCATION_ID
+from divided_kingdom.apps.game.helpers.helper import get_game_messages
 from divided_kingdom.apps.item.models import Item
 from divided_kingdom.apps.location.models import Location
 from divided_kingdom.apps.player.forms import PlayerForm
@@ -42,7 +43,10 @@ def detail(request, id):
 
     context = RequestContext(request, {
         "player": player,
-        "items": items
+        "items": items,
+        "game_messages": get_game_messages(player),
     })
 
     return TemplateResponse(request, "player/detail.html", context)
+
+

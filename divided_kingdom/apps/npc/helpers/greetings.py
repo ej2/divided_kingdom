@@ -17,3 +17,4 @@ MERCHANT_GREETINGS = (
     "Welcome, what may I do to serve you?",
     "Greetings, what do you require?"
 )
+

@@ -1,0 +1,26 @@
+[
+  {
+    "pk": 1,
+    "model": "sites.site",
+    "fields": {
+      "domain": "localhost:8001",
+      "name": "Localhost"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "sites.site",
+    "fields": {
+      "domain": "staging.dividedkingdom.com",
+      "name": "Staging Divided Kingdom"
+    }
+  },
+  {
+    "pk": 3,
+    "model": "sites.site",
+    "fields": {
+      "domain": "www.dividedkingdom.com",
+      "name": "Divided Kingdom"
+    }
+  }
+]

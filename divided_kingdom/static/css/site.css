@@ -75,3 +75,7 @@
     width: 400px;
     margin: 5px;
 }
+
+.numeric {
+    text-align: right;
+}

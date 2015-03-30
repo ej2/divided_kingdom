@@ -15,27 +15,31 @@
       <div class="navbar-collapse collapse navbar-responsive-collapse">
         <ul class="nav navbar-nav">
           <li class="active"><a class="menu" href="{% url "game:play" %}">Play</a></li>
-          <li><a  class="menu" href="#">Link</a></li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle menu" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-              <li><a class="menu" href="{% url "authentication:logout" %}">Log Out</a></li>
-            </ul>
-          </li>
         </ul>
 
         <div class="navbar-right">
 
+          <ul class="nav navbar-nav">
+            <li><a class="menu" href="#">{{ player.gold }} <img src="{{ STATIC_URL }}/images/icons/coins.png" alt="gold"> </a></li>
+            <li><a class="menu" href="{% url "player:detail" player.pk %}">
+              <img src="{{ STATIC_URL }}/images/icons/white-bag.png" alt="inventory"> </a>
+            </li>
+            <li class="dropdown" style="vertical-align: middle;">
+              <a href="#" class="dropdown-toggle menu" data-toggle="dropdown"><i class="fa fa-2x fa-cog"></i> <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a class="menu" href="{% url "authentication:logout" %}">Log Out</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+
+        <div class="navbar-right" style="padding-right: 10px;">
           {% player_info user %}
         </div>
+
+
       </div>
     </div>
   </div>
-{% endblock %}
-
-{% block footer %}
-<div>
-  <input class="chat-bar" type="text">
-  <input class="" type="button" value="Send">
-</div>
 {% endblock %}

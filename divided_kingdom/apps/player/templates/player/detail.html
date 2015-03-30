@@ -6,6 +6,12 @@
 
   <div>Health: {{ player.current_health }} / {{ player.total_health }} </div>
   <div>Stamina: {{ player.current_stamina }} / {{ player.total_stamina }} </div>
+  <div>XP: {{ player.xp }}</div>
+  <div>Level: {{ player.level }}</div>
+
+  {% for game_message in game_messages %}
+    <p>{{ game_message.message|safe }}</p>
+  {% endfor %}
 
   <h4>Inventory</h4>
   {% include "item/inventory_list.html" %}

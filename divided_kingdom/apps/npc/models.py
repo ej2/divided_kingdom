@@ -29,6 +29,36 @@ class NPC(AuditModel):
     motivating_force = models.ForeignKey(MotivatingForce, null=True, blank=True)
     personality = models.CharField(max_length=30, null=True, blank=True)
 
+    def adjust_health(self, amount):
+        self.current_health += amount
+
+        if self.current_health < 0:
+            self.current_health = 0
+
+        if self.current_health > self.total_health:
+            self.current_health = self.total_health
+
+        result = "{0} {1} <span class='health'>{2} health</span>.".format(
+            self.name,
+            "gains" if amount > 0 else "loses", abs(amount))
+
+        return result
+
+    def adjust_stamina(self, amount):
+        self.current_stamina += amount
+
+        if self.current_stamina < 0:
+            self.current_stamina = 0
+
+        if self.current_stamina > self.total_stamina:
+            self.current_stamina = self.total_stamina
+
+        result = "{0} {1} <span class='stamina'>{2} stamina</span>.".format(
+            self.name,
+            "gains" if amount > 0 else "loses", abs(amount))
+
+        return result
+
     def __unicode__(self):
         return self.name
 
