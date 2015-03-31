@@ -133,22 +133,3 @@ FIXTURE_DIRS = (
     join(PROJECT_ROOT, "fixtures", "seed"),)
 
 
-# Sendgrid email settings
-#DEFAULT_FROM_EMAIL = "info@dividedkingdom.com"
-#EMAIL_HOST = "smtp.sendgrid.net"
-#EMAIL_PORT = 587
-#EMAIL_HOST_USER = "ej2"
-#EMAIL_HOST_PASSWORD = "x9jaher0"
-#EMAIL_SUBJECT_PREFIX = "[DividedKingdom]"
-#EMAIL_USE_TLS = True
-#SERVER_EMAIL = 'system@dividedkingdom.com'
-
-# Sendgrid email settings
-DEFAULT_FROM_EMAIL = "SideKick <info@sidecarsinc.com>"
-EMAIL_HOST = "smtp.sendgrid.net"
-EMAIL_PORT = 587
-EMAIL_HOST_USER = "sidecars"
-EMAIL_HOST_PASSWORD = "y72mzXgbHYRGry"
-EMAIL_SUBJECT_PREFIX = "[Divided Kingdom]"
-EMAIL_USE_TLS = True
-SERVER_EMAIL = 'system@sidecarsinc.com'
