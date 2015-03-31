@@ -1,7 +1,7 @@
 import random
 from annoying.functions import get_object_or_None
 from divided_kingdom.apps.game.models import Reward
-from divided_kingdom.apps.item.helpers.item import create_item
+from divided_kingdom.apps.item.helpers.item import create_item, get_random_drop
 
 
 def calculate_reward(player, event_action, success):
@@ -51,13 +51,22 @@ def calculate_reward(player, event_action, success):
 
 
 def combat_reward(player, mob):
-
+    result = ""
     xp_awarded = mob.xp_amount
 
     #calculate bonus XP
-    xp_awarded += random.randint(1,5)
+    xp_awarded += random.randint(1, 5)
+
+    item = get_random_drop(mob.drop_table)
+
+    if item:
+        item.player = player
+        item.save()
+
+        result = "<br>You find a <span class='unidentified'>{0}</span>.".format(item.name)
 
     player.xp += xp_awarded
     player.save()
 
-    return "You gain <span class='xp'>{0} XP</span>.".format(xp_awarded)
+    return "You gain <span class='xp'>{0} XP</span>.{1}".format(xp_awarded, result)
+

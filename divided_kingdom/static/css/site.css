@@ -28,6 +28,12 @@
   color: #81F781;
 }
 
+.unidentified
+{
+  font-weight: bold;
+  color: #f77e33;
+}
+
 .health
 {
     font-weight: bold;

@@ -257,10 +257,10 @@ def attack(request):
     player = get_object_or_None(Player, user=user)
     mob = get_object_or_None(Mob, player=player, current_health__gt=0)
 
-    result = basic_attack(player, mob)
-    create_game_message(player, result)
-
     if mob:
+        result = basic_attack(player, mob)
+        create_game_message(player, result)
+
         if mob.current_health <= 0:
             result = "The {0} dies.".format(mob.name)
             create_game_message(player, result)

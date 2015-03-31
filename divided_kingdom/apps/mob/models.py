@@ -104,6 +104,7 @@ class Encounter(AuditModel):
     def __unicode__(self):
         return "Encounter on {0}".format(self.route.name)
 
+
 class MobEncounter(AuditModel):
     mob_type = models.ForeignKey(MobType)
     encounter = models.ForeignKey(Encounter, related_name="mobs")

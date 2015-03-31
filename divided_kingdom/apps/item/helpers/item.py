@@ -45,6 +45,7 @@ def get_random_drop(drop_table):
     item_drops = drop_table.items.filter(drop_rate__gt=drop)
 
     if item_drops.count() > 0:
-        return random.choice(item_drops)
+        item_drop = random.choice(item_drops)
+        return create_item(item_drop.item_type)
     else:
         return None
